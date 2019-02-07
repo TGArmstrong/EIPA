@@ -15,7 +15,6 @@ G = spalloc(nx*ny,nx*ny,5000);
 for i = 1:nx
    for j = 1:ny
       n = j+(i-1)*ny;
-      
       nxp = j + i*ny;
       nxm = j + (i-2)*ny;
       nyp = (j+1) + (i-1)*ny;
@@ -44,15 +43,10 @@ end
 %spy(G);
 [E, D] = eigs(G, 9, 'SM');
 Eplot = zeros(nx,ny);
-figure(1);
-for k = 1:9
-    for i = 1:nx
-        for j = 1:ny
-            n = j + (i-1)*ny;
-            Eplot(i,j) = E(n,k);
-        end
+for i = 1:nx
+    for j = 1:ny
+        n = j + (i-1)*ny;
+        Eplot(i,j) = E(n,1);
     end
-    subplot(3,3,k);
-    surf(Eplot);
 end
-
+surf(Eplot);
